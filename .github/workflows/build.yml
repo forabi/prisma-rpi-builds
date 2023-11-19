@@ -14,7 +14,7 @@ jobs:
       - name: Checkout ${{ github.event.inputs.tag }}
         uses: actions/checkout@v2
         with:
-          repository: 'prisma/prisma-engines'
+          repository: "prisma/prisma-engines"
           ref: ${{ github.event.inputs.tag }}
 
       - uses: actions-rs/toolchain@v1
@@ -36,10 +36,10 @@ jobs:
             [target.armv7-unknown-linux-gnueabihf]
             image = "pantharshit00/prisma-armv7-build-image:latest"
           EOF
-      
+
       - name: List files for verification
         run: ls -al && cat Cross.toml
-          
+
       - uses: actions-rs/cargo@v1
         with:
           use-cross: true
@@ -57,6 +57,5 @@ jobs:
           artifacts: |
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/query-engine,
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/prisma-fmt,
-            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/migration-engine,
-            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/introspection-engine,
+            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/schema-engine,
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/libquery_engine_napi.so.node
