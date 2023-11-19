@@ -21,8 +21,8 @@ jobs:
         if: ${{ steps.check_update.outputs.new_prisma_version }}
         run: |
           echo '${{ steps.check_update.outputs.new_prisma_version }}' > version
-          git config --global user.name 'Harshit Pant'
-          git config --global user.email 'pantharshit00@gmail.com'
+          git config --global user.name 'Muhammad Fawwaz Orabi'
+          git config --global user.email 'mfawwaz93@gmail.com'
           git commit -am "chore: auto update prisma version for ${{ steps.check_update.outputs.new_prisma_version }}"
           git push
       - name: Trigger build
@@ -30,5 +30,5 @@ jobs:
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: build armv7
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           inputs: '{ "tag": "${{ steps.check_update.outputs.new_prisma_version }}" }'
